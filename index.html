@@ -6,7 +6,12 @@
 </head>
 <body>
     <script>
-        
+    function jugadaPC() {
+        const opciones = ["piedra", "papel", "tijera"];
+        let aleatorioPC = Math.floor(Math.random()*opciones.length);
+        return opciones[aleatorioPC]
+    }    
+    console.log(jugadaPC())
     </script>
 
 </body>
