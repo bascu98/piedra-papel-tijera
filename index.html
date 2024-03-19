@@ -11,7 +11,36 @@
         let aleatorioPC = Math.floor(Math.random()*opciones.length);
         return opciones[aleatorioPC]
     }    
-    console.log(jugadaPC())
+   
+    function jugadaHumano(jugada) {
+        return jugada
+    }
+    const jugadaPCresult = jugadaPC();
+    const jugadaHumanoresult = jugadaHumano("papel")
+    
+    if  (jugadaPCresult == jugadaHumanoresult) {
+        console.log("empate, habéis tirado lo mismo");
+    }
+    else if (jugadaPCresult == "tijera" && jugadaHumanoresult == "piedra") {
+        console.log("has ganado, la piedra aplasta a las tijeras")
+    }
+    else if (jugadaPCresult == "papel" && jugadaHumanoresult == "piedra") {
+        console.log("has perdido, el papel gana a la piedra")
+    }
+    else if (jugadaPCresult == "papel" && jugadaHumanoresult == "tijera") {
+        console.log("has ganado, las tijeras cortan el papel")
+    }
+    else if (jugadaPCresult == "piedra" && jugadaHumanoresult == "tijera") {
+        console.log("has perdido, la piedra aplasta a las tijeras")
+    }
+    else if (jugadaPCresult == "piedra" && jugadaHumanoresult == "papel") {
+        console.log("has ganado, el papel gana a la piedra")
+    }
+    else if (jugadaPCresult == "tijera" && jugadaHumanoresult == "papel") {
+        console.log("has ganado, el papel corta la tijera")
+    }
+    
+
     </script>
 
 </body>
