@@ -6,40 +6,63 @@
 </head>
 <body>
     <script>
+let puntosJugador = 0;
+let puntosPC = 0;
+function partidaNueva() {
     function jugadaPC() {
         const opciones = ["piedra", "papel", "tijera"];
         let aleatorioPC = Math.floor(Math.random()*opciones.length);
         return opciones[aleatorioPC]
-    }    
+    }   
    
     function jugadaHumano(jugada) {
         return jugada
     }
+    let pregunta = prompt("¿Piedra, papel o tijera?");
     const jugadaPCresult = jugadaPC();
-    const jugadaHumanoresult = jugadaHumano("papel")
+    const jugadaHumanoresult = jugadaHumano(pregunta).toLowerCase();
+
+
+    console.log("has tirado: " + jugadaHumanoresult);
+    console.log("el rival ha tirado: " + jugadaPCresult);
     
+    
+    function resultado(jugadaPCresult, jugadaHumanoresult) {
     if  (jugadaPCresult == jugadaHumanoresult) {
-        console.log("empate, habéis tirado lo mismo");
+        return "empate";
     }
-    else if (jugadaPCresult == "tijera" && jugadaHumanoresult == "piedra") {
-        console.log("has ganado, la piedra aplasta a las tijeras")
+    else if ((jugadaPCresult == "tijera" && jugadaHumanoresult == "piedra") ||
+    (jugadaPCresult == "papel" && jugadaHumanoresult == "tijera") || 
+    (jugadaPCresult == "piedra" && jugadaHumanoresult == "papel")) {
+        return "ganas";
     }
-    else if (jugadaPCresult == "papel" && jugadaHumanoresult == "piedra") {
-        console.log("has perdido, el papel gana a la piedra")
+       
+    else {
+        return "pierdes";
     }
-    else if (jugadaPCresult == "papel" && jugadaHumanoresult == "tijera") {
-        console.log("has ganado, las tijeras cortan el papel")
-    }
-    else if (jugadaPCresult == "piedra" && jugadaHumanoresult == "tijera") {
-        console.log("has perdido, la piedra aplasta a las tijeras")
-    }
-    else if (jugadaPCresult == "piedra" && jugadaHumanoresult == "papel") {
-        console.log("has ganado, el papel gana a la piedra")
-    }
-    else if (jugadaPCresult == "tijera" && jugadaHumanoresult == "papel") {
-        console.log("has ganado, el papel corta la tijera")
-    }
+}
+
     
+    function ronda(jugadaPCresult, jugadaHumanoresult) {
+        const quienGana = resultado(jugadaPCresult, jugadaHumanoresult);
+        if (quienGana == "empate") {
+            return "Habéis empatado"
+        }
+        else if (quienGana == "ganas") {
+            puntosJugador++;
+            return "Has ganado"
+        }
+        else {
+            puntosPC++;
+            return "Has perdido"
+        }
+    }
+    console.log(ronda(jugadaPCresult, jugadaHumanoresult));
+    console.log("Marcador - Jugador: " + puntosJugador + " | Ordenador : " + puntosPC);
+    
+}
+
+
 
     </script>
 
